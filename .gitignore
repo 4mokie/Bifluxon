@@ -1,0 +1,3 @@
+*.pyc
+.ipynb_checkpoints/AC Qubit spectrum-checkpoint.ipynb
+AC Qubit spectrum Debug.ipynb
