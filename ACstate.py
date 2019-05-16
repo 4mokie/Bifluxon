@@ -92,7 +92,7 @@ class State():
     def calc_WF(self ):
 
         
-        if self.qubit.fi_grid is None or self.qubit.Q_grid is None:
+        if not( hasattr(self.qubit, 'fi_grid') or hasattr(self.qubit, 'Q_grid') ):
              self.qubit.fi_grid = [-8*pi, 8*pi, 101]
              self.qubit.Q_grid = [-2, 3]
              
