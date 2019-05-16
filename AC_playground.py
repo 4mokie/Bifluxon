@@ -325,6 +325,8 @@ if __name__=='__main__':
 #              E_J = 30, 
 #              E_C = 16,
 #              dE_J = 0)
+    
+    ACQB15.set_grid(fi_grid = [-8*pi, 8*pi, 101], Q_grid = [0, 1])
   
     bands = [0,1,2]
     
@@ -341,7 +343,7 @@ if __name__=='__main__':
 #    im = plt.imread('spectrum.png')
 #    implot = plt.imshow(im)
     
-    ACQB15.plot_bands_Psi(fi_ext_list = fi_ext_list, ng_list = [ 0.0, 0.5 ], bands = [0,1,2])
+    ACQB15.plot_bands_Psi(fi_ext_list = fi_ext_list, ng_list = [ 0.5 ], bands = [0,1,2])
 
 
 

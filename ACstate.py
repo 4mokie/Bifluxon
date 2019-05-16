@@ -86,11 +86,19 @@ class State():
 #    def calc_WF_1d(self, fi_grid = [-8*pi, 8*pi, 101], Q_grid = [-2, 2] ):
 
         
-    def calc_WF(self, fi_grid = [-8*pi, 8*pi, 101], Q_grid = [-2, 3] ):
+    
 
-        self.fi_grid = fi_grid
-        self.Q_grid = Q_grid
 
+    def calc_WF(self ):
+
+        
+        if self.qubit.fi_grid is None or self.qubit.Q_grid is None:
+             self.qubit.fi_grid = [-8*pi, 8*pi, 101]
+             self.qubit.Q_grid = [-2, 3]
+             
+        fi_grid = self.qubit.fi_grid
+        Q_grid = self.qubit.Q_grid
+        
         
         ng = self.ng 
         fi_ext = self.fi_ext 

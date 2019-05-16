@@ -71,8 +71,9 @@ class ACQubit():
             self.label += f'{key}:{val}   '
             
             
-        if self.dE_J is None:
-            self.dE_J = 0
+        if 'dE_J' not in kwargs.keys():
+            setattr(self, 'dE_J', 0 )
+        
         
         try:    
             E_CL = self.E_CL
@@ -109,6 +110,12 @@ class ACQubit():
         self.states = []
 
 
+    def set_grid(self, fi_grid, Q_grid):
+        self.fi_grid = fi_grid
+        self.Q_grid = Q_grid
+        
+        
+        
     def approx_0e(self, fi_ext):
         betta = 1/self.alpha
         return self.wpL + self.Vper0e*(2 - betta/2)*np.exp( -betta/4 )*np.cos(  fi_ext )
@@ -384,8 +391,8 @@ class ACQubit():
                  vmin = np.min([np.min(Vp), np.min(Vm) ] )
 
 
-                 ax.plot(fi /2/pi, Vp, 'c', ls = ':' , alpha=0.5 , label = '$V_-$')
-                 ax.plot(fi /2/pi, Vm, 'y', ls = '-.',  alpha=0.5 , label = '$V_+$')
+                 ax.plot(fi /2/pi, Vp, 'xkcd:gray', ls = ':' , alpha=0.5 , label = '$V_-$')
+                 ax.plot(fi /2/pi, Vm, 'xkcd:gray', ls = '-.',  alpha=0.5 , label = '$V_+$')
             ax.set_ylim(vmin - 0.2*np.abs(vmin),vmax) 
             ax.legend()
 
