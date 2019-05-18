@@ -343,7 +343,7 @@ if __name__=='__main__':
 #    im = plt.imread('spectrum.png')
 #    implot = plt.imshow(im)
     
-    ACQB15.plot_bands_Psi(fi_ext_list = fi_ext_list, ng_list = [ 0.5 ], bands = [0,1,2])
+    ACQB15.plot_bands_Psi(fi_ext_list = fi_ext_list, ng_list = [ 0, 0.5 ], bands = [0,1,2])
 
 
 
