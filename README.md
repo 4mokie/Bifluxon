@@ -32,6 +32,14 @@ param_dict = {'E_CL': 15,  'E_J' : 33, 'E_C' : 8, 'dE_J' : 3 }
 ACQB15 = ACQubit (**param_dict)
 ```
 
+Qubit can be set in certain state (n_g and fi_ext), energy and WF of the state are calculated. One the Hamiltonian for certain state was diagonalized, we can use WFs and Es without recalculations.
+
+ACstate methods allow to calculate E, WFs, matrix elements
+
+ACqubit methods are wrappers for interation over range of parameters and plotting.
+
+The Hamiltonian of the qubit can be found in ACstate.py module, `calc_WF` function
+
 ### AC qubit methods
 
 - ` set_state(ng , fi_ext)`
