@@ -255,6 +255,21 @@ class State():
         
         return np.abs(fi_ij)
     
+    def get_qp_ij(self, i, j ): 
+        
+        qp_ij = 0
+        self.get_WF(  )
+        for q in range(self.Q_dim):
+
+            Psi_i = self.get_Psi(i, q)
+            Psi_j = self.get_Psi(j, q)
+
+
+#            fi_ij += np.sum(Psi_i * Psi_j )
+            qp_ij += np.sum(np.conjugate(Psi_i) * Psi_j * np.sin(self.fi_list/2) )
+        
+        return np.abs(qp_ij)
+
     
     def get_n_ij(self, i, j, VERBOSE = False  ): 
         
