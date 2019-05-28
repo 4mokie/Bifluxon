@@ -229,6 +229,9 @@ class ACQubit():
         fi_max = np.max (fi_ext_list)
         n_split = int((fi_max - fi_min)//pi)
         
+        if n_split == 0 :
+            n_split = 1
+        
         fi_ext_list_split = np.array_split (fi_ext_list, n_split)
 
         ax.set_title( self.label )

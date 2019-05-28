@@ -293,7 +293,7 @@ if __name__=='__main__':
 
 
     Nfi_ext = 101
-    fi_ext_min, fi_ext_max = [-0*pi, 2*pi]
+    fi_ext_min, fi_ext_max = [0.95*pi, 1.05*pi]
     fi_ext_list = np.linspace(fi_ext_min, fi_ext_max, Nfi_ext)
     dfi_ext = ( fi_ext_max - fi_ext_min ) /Nfi_ext
 
@@ -312,7 +312,7 @@ if __name__=='__main__':
     
     
     J1 = 33
-    J2 = 1*J1+0
+    J2 = 1*J1+13
     
     ACQB15 = ACQubit (E_CL = 7, 
                   E_L = 0.5, 
@@ -326,7 +326,7 @@ if __name__=='__main__':
 #              E_C = 16,
 #              dE_J = 0)
     
-    ACQB15.set_grid(fi_grid = [-8*pi, 8*pi, 101], Q_grid = [0, 1])
+    ACQB15.set_grid(fi_grid = [-8*pi, 8*pi, 101], Q_grid = [-2, 3])
   
     bands = [0,1,2]
     
@@ -343,7 +343,7 @@ if __name__=='__main__':
 #    im = plt.imread('spectrum.png')
 #    implot = plt.imshow(im)
     
-    ACQB15.plot_bands_Psi(fi_ext_list = fi_ext_list, ng_list = [ 0, 0.5 ], bands = [0,1,2])
+    ACQB15.plot_bands_Psi(fi_ext_list = fi_ext_list, ng_list = [  0.49 ], bands = [0,1,2])
 
 
 
