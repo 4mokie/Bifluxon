@@ -311,8 +311,8 @@ if __name__=='__main__':
 #                      dE_J = 10)
     
     
-    J1 = 33
-    J2 = 1*J1+13
+    J1 = 23
+    J2 = 1*J1+3
     
     ACQB15 = ACQubit (E_CL = 7, 
                   E_L = 0.5, 

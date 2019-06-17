@@ -284,7 +284,7 @@ class State():
             
             q = self.Q_list[k]
             
-            el = np.sum (np.conjugate(Psi_i) * Psi_j  )
+            el = np.sum ( np.conjugate(Psi_i) * Psi_j  )
             
             if VERBOSE:
                 fig, ax = plt.subplots()
@@ -308,7 +308,7 @@ class State():
             Psi_i = self.get_Psi(i, q)
             Psi_j = self.get_Psi(j, q)
 
-            psi_ij += np.sum(Psi_i * Psi_j) **2
+            psi_ij += np.sum(np.conjugate(Psi_i) * Psi_j) **2
         
         return psi_ij**.5
 
