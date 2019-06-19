@@ -295,7 +295,8 @@ class State():
     
                 ax.set_title( 'k = {}, elem = {:1.3e}'.format(q, el) )
     #            fi_ij += np.sum(Psi_i * Psi_j )
-            n_ij += el * (q - self.ng)
+#            n_ij += el * (q - self.ng)
+            n_ij += el * (q )
         
         return np.abs(n_ij)
     
