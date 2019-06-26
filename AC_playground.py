@@ -293,7 +293,7 @@ if __name__=='__main__':
 
 
     Nfi_ext = 101
-    fi_ext_min, fi_ext_max = [0.0*pi, 1*pi]
+    fi_ext_min, fi_ext_max = [0.95*pi, 1.05*pi]
     fi_ext_list = np.linspace(fi_ext_min, fi_ext_max, Nfi_ext)
     dfi_ext = ( fi_ext_max - fi_ext_min ) /Nfi_ext
 

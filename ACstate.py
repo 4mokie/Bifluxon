@@ -93,7 +93,7 @@ class State():
 
         
         if not( hasattr(self.qubit, 'fi_grid') or hasattr(self.qubit, 'Q_grid') ):
-             self.qubit.fi_grid = [-8*pi, 8*pi, 301]
+             self.qubit.fi_grid = [-8*pi, 8*pi, 101]
              self.qubit.Q_grid = [-2, 3]
              
         fi_grid = self.qubit.fi_grid
@@ -304,14 +304,18 @@ class State():
     def get_psi_ij(self, i, j ): 
         
         psi_ij = 0
-        for q in range(self.Q_dim):
+        for q in [0]: #range(self.Q_dim):
 
             Psi_i = self.get_Psi(i, q)
             Psi_j = self.get_Psi(j, q)
 
+<<<<<<< HEAD
             psi_ij += np.sum(np.conjugate(Psi_i) * Psi_j) **2
+=======
+            psi_ij += np.sum(Psi_i * Psi_j)
+>>>>>>> parent of 306595d... playing around
         
-        return psi_ij**.5
+        return psi_ij
 
 
 
