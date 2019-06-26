@@ -23,8 +23,8 @@ from matplotlib.widgets import Button
 
 from multiprocessing import Pool
 
-from tqdm import tqdm, tqdm_notebook
-#from tqdm.autonotebook import tqdm
+#from tqdm import tqdm, tqdm_notebook
+from tqdm.autonotebook import tqdm
 
 import matplotlib as mpl
 from itertools import cycle
@@ -165,7 +165,7 @@ class ACQubit():
     def iterate_ng(self,  ng_list, fi_ext, get_function, *args):
             output = []
 #            tfi_ext_list = tqdm_notebook(fi_ext_list, leave = False, desc = f'ng = {ng}')
-            tng_list = tqdm_notebook(ng_list,  desc = f'$\\phi_e$ = {fi_ext//pi}')
+            tng_list = tqdm(ng_list,  desc = f'$\\phi_ext$ = {fi_ext}')
         
             for ng in tng_list:
         
