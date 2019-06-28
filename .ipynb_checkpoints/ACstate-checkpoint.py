@@ -78,6 +78,8 @@ class State():
         self.ng = ng
         self.fi_ext = fi_ext
 
+        self.st = {'ng':ng, 'fi_ext':fi_ext}
+        
         self.E = None
         self.Psi = None
         
@@ -374,3 +376,27 @@ class State():
     def get_T1(self, fi_ext, ng, i = 0, j = 1):
  
        return 1/(1/self.get_T1_phi( fi_ext, ng, i = 0, j = 1) + 1/self.get_T1_n( fi_ext, ng, i = 0, j = 1))
+
+
+
+    def sweep(self, param, plist):
+        
+        output = []
+        state = self.st
+        
+        for p in plist:
+        
+            if param  in ['ng', 'fi_ext']:
+            
+                state[param] = p
+                output.append(self.qubit.set_state (**state) )
+            else:
+            
+                params = self.qubit.param
+                params[param] = p
+                q = ACQubit(**params)
+                output.append(q.set_state(**state) )
+        
+        
+        return output
+        
