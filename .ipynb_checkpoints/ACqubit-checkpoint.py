@@ -69,11 +69,13 @@ class ACQubit():
         for key, val in kwargs.items():
             setattr(self, key, val )
             self.label += f'{key}:{val}   '
+                
+        self.param = kwargs
             
             
         if 'dE_J' not in kwargs.keys():
             setattr(self, 'dE_J', 0 )
-        
+            self.param['dE_J'] = 0
         
         try:    
             E_CL = self.E_CL
@@ -558,3 +560,5 @@ class ACQubit():
 #        
 #st = Q.set_state(0,0)
 #st.get_chi_i(0, 6)
+
+

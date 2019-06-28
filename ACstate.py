@@ -37,6 +37,7 @@ import matplotlib as mpl
 from itertools import cycle
 from scipy import signal
 
+from ACqubit import *
 
 mpl.rcParams["font.size"] = 12
 
@@ -238,7 +239,12 @@ class State():
         
         return  self.E0n  
 
+    def get_E_ij(self,i,j ):
 
+        E, Psi = self.get_WF(  )
+        E_ij = (E[j] - E[i])
+        
+        return  E_ij 
 
 
 
@@ -378,47 +384,69 @@ class State():
        return 1/(1/self.get_T1_phi( fi_ext, ng, i = 0, j = 1) + 1/self.get_T1_n( fi_ext, ng, i = 0, j = 1))
 
 
+
+    def get_(self, func, **kwargs):
+        
+        func_dict = {'E': self.get_E,
+                     'Psi': self.get_Psi,
+                     'E_ij': self.get_E_ij,
+
+                     'fi_ij': self.get_fi_ij,
+                     'qp_ij': self.get_qp_ij,
+                     'n_ij': self.get_n_ij,
+                     'psi_ij': self.get_psi_ij,
+                     'chi_i': self.get_chi_i,
+                     'T1': self.get_T1}
+        
+        return func_dict[func](**kwargs)
+
     def sweep(self, param, plist):
 
         output = []
         state = self.st
         
-        for p in plist:
+        tplist = tqdm(plist)
+        for p in tplist:
         
             if param  in ['ng', 'fi_ext']:
             
                 state[param] = p
-                output.append(self.qubit.set_state (**state) )
+                st = self.qubit.set_state (**state) 
+                
+                
             else:
             
                 params = self.qubit.param
                 params[param] = p
                 q = ACQubit(**params)
-                output.append(q.set_state(**state) )
-        
-        
-        return output
+                st = q.set_state(**state)
+                
+            output.append(st )
+            st.get_WF()
+        sw = Sweep(output, param, plist )
+        return sw
     
 class Sweep():
     
-    def __init__(self, param, plist):
+    def __init__(self, states,param, plist):
         
-        output = []
-        state = self.st
-        
-        for p in plist:
-        
-            if param  in ['ng', 'fi_ext']:
-            
-                state[param] = p
-                output.append(self.qubit.set_state (**state) )
-            else:
-            
-                params = self.qubit.param
-                params[param] = p
-                q = ACQubit(**params)
-                output.append(q.set_state(**state) )
+        self.states = states
+        self.param = param
+        self.plist = plist
         
         
-        return output
+    def plot(self, func, ax = None, **kwargs):
+        
+        if ax is None:
+            fig, ax = plt.subplots()
+        
+        y = []
+        for st in self.states:
+            y.append(st.get_( func, **kwargs) )
+        ax.plot(self.plist, y )
+        
+        ax.set_xlabel(self.param)
+        ax.set_ylabel(func)
+        
+        return ax
         

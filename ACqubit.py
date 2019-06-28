@@ -560,3 +560,5 @@ class ACQubit():
 #        
 #st = Q.set_state(0,0)
 #st.get_chi_i(0, 6)
+
+
