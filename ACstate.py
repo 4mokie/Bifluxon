@@ -443,10 +443,17 @@ class Sweep():
         y = []
         for st in self.states:
             y.append(st.get_( func, **kwargs) )
-        ax.plot(self.plist, y )
+        l, = ax.plot(self.plist, y )
         
         ax.set_xlabel(self.param)
         ax.set_ylabel(func)
         
         return ax
         
+        
+    def get_(self, func, **kwargs):
+        y = []
+        for st in self.states:
+            y.append(st.get_( func, **kwargs) )
+            
+        return y
