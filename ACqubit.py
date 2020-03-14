@@ -193,7 +193,7 @@ class ACQubit():
     def plot_spectrum(self, fi_ext_list, ng_list,  bands, ax = None ):
 
         if ax is None:
-            fig, ax = plt.subplots()
+            fig, ax = plt.subplots(figsize = (6,4))
         
         ax.set_title( self.label )
         ax.set_xlabel ('$\\Phi_{ext}/\\Phi_0$')
