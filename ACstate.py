@@ -325,22 +325,34 @@ class State():
 
 
 
-    def get_chi_i(self, i, freq ): 
+    def get_chi_i(self,  freq ): 
         
-        chi_i = 0
-        self.get_WF(  )
-        for j in range(10):
-            if i == j:
-                continue
-            
-            E = self.get_E()   
-            dE = E[i] - E[j] 
-            fi_ij = self.get_fi_ij( i, j )
-            chi_i += fi_ij**2 * 2*freq/( dE**2 - freq**2 ) 
-            
+        
+        ηsh = 0.0075
+        Zr = 50.
+        Z2z    = 0.1549618 # Reduced impedance z=Z/RQ (times Z in sqrt(L in nH / C in fF)), with RQ = h/(2e)**2 superconducting resistance quantum
 
+        E = self.get_E()
+        dev_tr = 10
         
-        return freq-chi_i
+        g, tmp_χ = np.zeros((dev_tr, dev_tr), dtype='complex128'), np.zeros((dev_tr, dev_tr), dtype='float64')
+        for i in range(dev_tr):
+            for j in range(dev_tr):
+                
+                fi_ij = self.get_fi_ij( i, j )
+#                 
+                g[i,j]     = ηsh * (self.E_L) * np.sqrt(np.pi * Z2z * Zr) * fi_ij
+    
+                
+                tmp_χ[i,j] = np.absolute(g[i,j])**2/(E[i] - E[j] - freq/1e9)
+#                 print(E[i])
+        # Multilevel Lamb and dispersive shifts
+        λ, χ = np.zeros(dev_tr, dtype='float64'), np.zeros(dev_tr, dtype='float64')
+        for i in range(dev_tr):
+            λ[i] = np.sum([tmp_χ[i,j] for j in range(dev_tr)])
+            χ[i] = np.sum([(tmp_χ[i,j]-tmp_χ[j,i]) for j in range(dev_tr)])
+        
+        return  np.abs(-(χ[1] - χ[0])/2.)
 
 
 

@@ -147,7 +147,7 @@ class ACQubit():
         
         return state
     
-    def iterate_fi(self,  fi_ext_list, ng, get_function, *args):
+    def iterate_fi(self,  fi_ext_list, ng, get_function, **kwargs):
             output = []
 #            tfi_ext_list = tqdm_notebook(fi_ext_list, leave = False, desc = f'ng = {ng}')
             tfi_ext_list = tqdm(fi_ext_list,  desc = f'ng = {ng}')
@@ -158,13 +158,13 @@ class ACQubit():
         
                 f = getattr(st, get_function) 
         
-                output.append( f(*args) )
+                output.append( f(**kwargs) )
         
              
             return   np.array(output)
             
 
-    def iterate_ng(self,  ng_list, fi_ext, get_function, *args):
+    def iterate_ng(self,  ng_list, fi_ext, get_function, **kwargs):
             output = []
 #            tfi_ext_list = tqdm_notebook(fi_ext_list, leave = False, desc = f'ng = {ng}')
             tng_list = tqdm(ng_list,  desc = f'$\\phi_ext$ = {fi_ext}')
@@ -175,7 +175,7 @@ class ACQubit():
         
                 f = getattr(st, get_function) 
         
-                output.append( f(*args) )
+                output.append( f(**kwargs) )
         
              
             return   np.array(output)
