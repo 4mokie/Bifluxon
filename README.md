@@ -1,7 +1,7 @@
 # Bifluxon (Aharonov-Casher) Qubit
 
 ## Intro
-This project allows to numerically study [Aharonov-Casher qubit](https://doi.org/10.1103/PhysRevLett.116.107002), namely calculate wavefunctions and energy levels, visualize energy spectra, evaluate decay rates and etc. The main feature of this obejected-oriented code is  save time and recources - once the Hamiltonian was solved for certain point, the information about energies and wavefunctions is storing and can be used in futher calculations.
+This project allows to numerically study [Aharonov-Casher qubit](https://doi.org/10.1103/PhysRevLett.116.107002), namely calculate wavefunctions and energy levels, visualize energy spectra, evaluate decay rates and etc. The main feature of this objected-oriented code is  save time and recources - once the Hamiltonian was solved for certain point, the information about energies and wavefunctions is stored and can be used in futher calculations.
 
 ## Installation
 
@@ -43,7 +43,7 @@ The Hamiltonian of the qubit can be found in ACstate.py module, `calc_WF` functi
 ### AC qubit methods
 
 - ` set_state(ng , fi_ext)`
-  creates (or retrieve, if was created before) attribute, corresponds to the given gate charge `ng` (in units of e) and the external flux `fi_ext` (in rad). Energies and wavefuctions can be calculated for particular state, see more detail in [the next section](#AC-state-methods)
+  creates (or retrieves, if was created before) attribute, corresponds to the given gate charge `ng` (in units of e) and the external flux `fi_ext` (in rad). Energies and wavefuctions can be calculated for particular state, see more detail in [the next section](#AC-state-methods)
 
 
 
