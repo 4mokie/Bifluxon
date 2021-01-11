@@ -258,7 +258,7 @@ class ACQubit():
                     
 #                    ls = lss[int((b + i)%2)]
                     ls = lss[int( ((b +1)//2+ i//2) %2)]
-                    Eband = self.iterate_fi( fi_ext_list, ng, 'get_E',b)  
+                    Eband = self.iterate_fi( fi_ext_list, ng, 'get_E')  
             
 
                     label = f'E{b}' if i is 0 else None

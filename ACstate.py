@@ -333,7 +333,7 @@ class State():
         Z2z    = 0.1549618 # Reduced impedance z=Z/RQ (times Z in sqrt(L in nH / C in fF)), with RQ = h/(2e)**2 superconducting resistance quantum
 
         E = self.get_E()
-        dev_tr = 10
+        dev_tr = 100
         
         g, tmp_χ = np.zeros((dev_tr, dev_tr), dtype='complex128'), np.zeros((dev_tr, dev_tr), dtype='float64')
         for i in range(dev_tr):
@@ -355,6 +355,31 @@ class State():
         return  np.abs(-(χ[1] - χ[0])/2.)
 
 
+    def get_chiM_i(self, i, freq ): 
+        
+        
+        ηsh = 0.225
+        Zr = 50.
+        Z2z    = 0.1549618 # Reduced impedance z=Z/RQ (times Z in sqrt(L in nH / C in fF)), with RQ = h/(2e)**2 superconducting resistance quantum
+        g = ηsh * (self.E_L) * np.sqrt(np.pi * Z2z * Zr)
+        
+        E = self.get_E()
+        dev_tr = 100
+        
+        χ = 0
+        for j in range(dev_tr):
+            
+            if i == j:
+                break
+            
+            E_ij  = E[i] - E[j]
+            fi_ij = self.get_fi_ij( i, j )
+            
+            χ += (g*fi_ij)**2 *2*E_ij/(E_ij**2 - (freq/1e9)**2)         
+
+        return  χ
+
+    
 
     def get_T1_phi(self, fi_ext, ng, i = 0, j = 1):
  
